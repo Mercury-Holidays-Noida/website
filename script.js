@@ -7,7 +7,7 @@
 // CONFIGURATION: Google Sheets Integration
 // Paste your Google Apps Script Web App URL below:
 // ==========================================================
-const GOOGLE_SHEETS_URL = ""; // e.g. "https://script.google.com/macros/s/AKfycb.../exec"
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxplSafQ3Cldu4Io0_3Ty9GCKYPUPHmsphrI8K-c8aV-c0If78o-ORNP6tcNPlAcdQtsA/exec";
 
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientCanvas();
