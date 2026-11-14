@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercury Holidays | You Pack, We Plan</title>
+  <meta name="description" content="Mercury Holidays - Noida based luxury travel curation. Status: On-Time. Destination: Launching Soon. Your seamless travel journey is almost ready for boarding.">
+  <link rel="icon" type="image/png" href="logo-transparent.png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-atmosphere">
+  <!-- Interactive Ambient Atmosphere Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="color-aurora-overlay"></div>
+  <div class="grid-subtle-overlay"></div>
+
+  <!-- Sound Toggle Notification Toast -->
+  <div id="audio-toast" class="audio-toast">
+    <span class="toast-dot"></span>
+    <span id="toast-text">Cabin audio chime ready</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="luxury-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="#" class="brand-logo-link" aria-label="Mercury Holidays Home">
+          <img src="logo-transparent.png" onerror="this.src='Mercury Holidays Logo.png'" alt="Mercury Holidays Logo" class="brand-logo-img">
+        </a>
+        <div class="brand-origin-badge">
+          <span class="badge-dot pulse"></span>
+          <span class="badge-text">HQ: Noida, India</span>
+          <span class="badge-sep">•</span>
+          <span class="badge-time" id="noida-clock">--:--:-- IST</span>
+        </div>
+      </div>
+
+      <!-- Live Flight Status Pill -->
+      <div class="status-pill-group">
+        <div class="flight-pill status-pill">
+          <span class="status-led-green"></span>
+          <span class="pill-label">STATUS</span>
+          <span class="pill-value highlight-green">ON-TIME</span>
+        </div>
+        <div class="flight-pill destination-pill">
+          <span class="status-led-amber"></span>
+          <span class="pill-label">DESTINATION</span>
+          <span class="pill-value highlight-amber">LAUNCHING SOON</span>
+        </div>
+      </div>
+
+      <!-- Action Utilities -->
+      <div class="header-actions">
+        <button id="chime-btn" class="chime-toggle-btn" title="Toggle Airport Cabin Chime">
+          <svg class="speaker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path class="sound-wave wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path class="sound-wave wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <span class="chime-btn-text">Cabin Chime</span>
+        </button>
+
+        <button id="header-cta-btn" class="priority-pass-cta" onclick="openPassModal()">
+          <span>Get Boarding Pass</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero Stage -->
+  <main class="main-stage">
+    <div class="content-container">
+      
+      <!-- Top Announcement Banner / Terminal Notice -->
+      <div class="terminal-notice-wrapper">
+        <div class="terminal-badge">
+          <div class="radar-scope-mini">
+            <div class="radar-sweep"></div>
+          </div>
+          <span class="notice-code">FLIGHT MH-01 // FIRST CLASS PASSENGER NOTICE</span>
+          <span class="gate-tag">GATE 01</span>
+        </div>
+      </div>
+
+      <!-- Announcement Hero Section (1st Playcard) -->
+      <section class="announcement-hero">
+        <!-- The User's Requested Quote Box -->
+        <div class="quote-announcement-card">
+          <div class="quote-ornament quote-open">“</div>
+          <p class="quote-text" id="quote-reveal">
+            <span class="quote-line line-1">“Dear passengers, boarding passes will be available shortly. Pack your bags.</span>
+            <span class="quote-line line-2">Your seamless travel journey is almost ready for boarding.”</span>
+          </p>
+          <div class="quote-ornament quote-close">”</div>
+          
+          <div class="quote-footer-meta">
+            <div class="tagline-badge">
+              <span class="tagline-star">✦</span>
+              <span class="tagline-text">YOU PACK, WE PLAN</span>
+              <span class="tagline-star">✦</span>
+            </div>
+            <div class="concourse-info">Mercury Holidays</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIP Priority Access & Notification Form (2nd Playcard) -->
+      <section class="priority-signup-section" id="vip-signup">
+        <div class="signup-card">
+          <div class="signup-glow"></div>
+          <div class="signup-content">
+            <div class="signup-badge-group">
+              <span class="signup-badge">FIRST REVEAL NOTIFICATION</span>
+              <span class="discount-badge-pill">✦ 20% EARLY BIRD DISCOUNT</span>
+            </div>
+            <h3 class="signup-title">Be The First To Step Aboard</h3>
+            <p class="signup-desc">
+              Boarding passes are being generated in limited series. Register your details below to receive an exclusive <strong>20% Early Bird Discount</strong> on your first booking, along with priority boarding access and curated luxury itinerary privileges upon departure.
+            </p>
+
+            <div class="early-bird-callout">
+              <span class="perk-star">★</span>
+              <span class="perk-text"><strong>Launch Benefit:</strong> Submit your details today to lock in <strong>20% OFF</strong> your maiden journey with Mercury Holidays.</span>
+            </div>
+
+            <form id="priority-form" class="signup-form" onsubmit="handleRegistration(event)">
+              <div class="input-row">
+                <div class="input-field-wrap">
+                  <label for="traveler-name">Passenger Full Name</label>
+                  <input type="text" id="traveler-name" placeholder="e.g. Elena Rostova" required autocomplete="name">
+                </div>
+                <div class="input-field-wrap">
+                  <label for="traveler-email">Email Address</label>
+                  <input type="email" id="traveler-email" placeholder="name@domain.com" required autocomplete="email">
+                </div>
+              </div>
+              <button type="submit" class="submit-boarding-btn" id="submit-btn">
+                <span class="btn-text">Claim 20% Discount &amp; Boarding Pass</span>
+                <span class="btn-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </span>
+              </button>
+            </form>
+
+            <div class="signup-guarantee">
+              <span class="lock-icon">🔒</span>
+              <span>Strictly confidential. No spam, only priority flight clearance.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Centerpiece: 3D Holographic Boarding Pass -->
+      <section class="boarding-pass-section">
+        <div class="pass-perspective-box" id="pass-tilt-card">
+          <div class="luxury-boarding-pass">
+            
+            <!-- Metallic Foil Shimmer Overlay -->
+            <div class="foil-glare"></div>
+
+            <!-- Main Pass Body (Left/Center) -->
+            <div class="pass-main-body">
+              <div class="pass-header-strip">
+                <div class="pass-carrier">
+                  <img src="logo-transparent.png" onerror="this.src='Mercury Holidays Logo.png'" alt="Mercury Holidays" class="pass-carrier-logo">
+                  <div class="pass-carrier-text">
+                    <span class="carrier-name">MERCURY HOLIDAYS</span>
+                    <span class="carrier-slogan">PREMIUM BESPOKE EXPEDITIONS</span>
+                  </div>
+                </div>
+                <div class="pass-class-badge">
+                  <span class="class-title">FIRST CLASS</span>
+                  <span class="class-priority">PRIORITY 1</span>
+                </div>
+              </div>
+
+              <!-- Route Matrix -->
+              <div class="flight-route-matrix">
+                <div class="route-point origin">
+                  <span class="city-code">DEL / NOIDA</span>
+                  <span class="city-name">Origin Concourse</span>
+                  <span class="terminal-tag">T-3 LUXURY LOUNGE</span>
+                </div>
+                <div class="route-vector">
+                  <div class="vector-flight-no">FLIGHT MH-2026</div>
+                  <div class="flight-line">
+                    <span class="flight-dot start"></span>
+                    <div class="plane-icon-wrapper">
+                      <svg class="flight-plane" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                      </svg>
+                    </div>
+                    <span class="flight-dot end"></span>
+                  </div>
+                  <div class="vector-duration">NON-STOP SEAMLESS</div>
+                </div>
+                <div class="route-point destination">
+                  <span class="city-code pulse-amber">READY</span>
+                  <span class="city-name text-launching">LAUNCHING SOON</span>
+                  <span class="terminal-tag badge-launching">7 ICONIC HORIZONS</span>
+                </div>
+              </div>
+
+              <!-- Pass Details Grid -->
+              <div class="pass-details-grid">
+                <div class="detail-cell">
+                  <span class="cell-label">PASSENGER NAME</span>
+                  <span class="cell-value" id="pass-passenger-display">VALUED TRAVELER</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="cell-label">STATUS</span>
+                  <span class="cell-value status-badge-inline">
+                    <span class="dot-green"></span> ON-TIME
+                  </span>
+                </div>
+                <div class="detail-cell">
+                  <span class="cell-label">GATE</span>
+                  <span class="cell-value">01</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="cell-label">SEAT</span>
+                  <span class="cell-value">1A • SUITE</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="cell-label">BOARDING TIME</span>
+                  <span class="cell-value" id="live-boarding-slot">STANDBY / READY</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="cell-label">EXPERIENCE</span>
+                  <span class="cell-value text-accent-gold">BESPOKE ESCAPE</span>
+                </div>
+              </div>
+
+              <!-- Bottom Perforation Hint / Seal -->
+              <div class="pass-main-footer">
+                <div class="hologram-security-stamp">
+                  <span class="hologram-ring"></span>
+                  <span class="hologram-text">MERCURY CERTIFIED • OFFICIAL PASS</span>
+                </div>
+                <div class="motto-strip">
+                  <span class="motto-tag">YOU PACK, WE PLAN</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Perforation Divider -->
+            <div class="pass-perforation">
+              <div class="perforation-circle top"></div>
+              <div class="perforation-line"></div>
+              <div class="perforation-circle bottom"></div>
+            </div>
+
+            <!-- Perforated Tear-off Stub (Right) -->
+            <div class="pass-stub">
+              <div class="stub-header">
+                <span class="stub-brand">MERCURY</span>
+                <span class="stub-flight">MH-2026</span>
+              </div>
+              <div class="stub-body">
+                <div class="stub-row">
+                  <span class="stub-lbl">NAME:</span>
+                  <span class="stub-val" id="stub-passenger-display">VALUED TRAVELER</span>
+                </div>
+                <div class="stub-row">
+                  <span class="stub-lbl">DEST:</span>
+                  <span class="stub-val gold-accent">LAUNCHING SOON</span>
+                </div>
+                <div class="stub-row">
+                  <span class="stub-lbl">STATUS:</span>
+                  <span class="stub-val green-accent">ON-TIME</span>
+                </div>
+                <div class="stub-row">
+                  <span class="stub-lbl">SEAT:</span>
+                  <span class="stub-val">1A</span>
+                </div>
+              </div>
+
+              <!-- Digital Barcode & Scanner Beam -->
+              <div class="barcode-container">
+                <div class="laser-scanner"></div>
+                <div class="barcode-lines">
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span class="barcode-number">MH 2026 8849 01</span>
+              </div>
+
+              <button class="stub-cta-btn" onclick="openPassModal()">
+                <span>STAMP PASS</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Terminal Flight Board (FIDS Live Status Display) -->
+      <section class="departure-board-section">
+        <div class="fids-panel">
+          <div class="fids-header">
+            <div class="fids-title-group">
+              <div class="fids-led-cluster">
+                <span class="fids-dot active"></span>
+                <span class="fids-dot"></span>
+                <span class="fids-dot"></span>
+              </div>
+              <h2 class="fids-title">MERCURY DEPARTURES // TERMINAL MONITOR</h2>
+            </div>
+            <div class="fids-clock">
+              <span class="fids-clock-lbl">LOCAL SYSTEM TIME:</span>
+              <span id="fids-time" class="fids-clock-digits">12:00:00</span>
+            </div>
+          </div>
+
+          <div class="fids-table-wrapper">
+            <table class="fids-table">
+              <thead>
+                <tr>
+                  <th>FLIGHT</th>
+                  <th>DEPARTURE</th>
+                  <th>DESTINATION</th>
+                  <th>GATE</th>
+                  <th>STATUS</th>
+                  <th>REMARKS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="fids-row current-flight">
+                  <td class="col-flight"><span class="fids-amber">MH 2026</span></td>
+                  <td class="col-dep">NOIDA / DEL</td>
+                  <td class="col-dest">
+                    <span class="split-flap-word" id="dest-flipper">LAUNCHING SOON</span>
+                  </td>
+                  <td class="col-gate">G-01</td>
+                  <td class="col-status">
+                    <span class="fids-status-pill green-pulse">
+                      <span class="dot"></span> ON-TIME
+                    </span>
+                  </td>
+                  <td class="col-remarks"><span class="fids-cyan">PREPARING FOR BOARDING</span></td>
+                </tr>
+                <tr class="fids-row upcoming">
+                  <td class="col-flight">MH 002</td>
+                  <td class="col-dep">NOIDA / DEL</td>
+                  <td class="col-dest"><span class="text-locked">CLASSIFIED PARADISE</span></td>
+                  <td class="col-gate">G-02</td>
+                  <td class="col-status"><span class="fids-status-pill amber-dim">STANDBY</span></td>
+                  <td class="col-remarks">ITINERARY CURATION</td>
+                </tr>
+                <tr class="fids-row upcoming">
+                  <td class="col-flight">MH 003</td>
+                  <td class="col-dep">NOIDA / DEL</td>
+                  <td class="col-dest"><span class="text-locked">SERENE RETREAT</span></td>
+                  <td class="col-gate">G-03</td>
+                  <td class="col-status"><span class="fids-status-pill amber-dim">STANDBY</span></td>
+                  <td class="col-remarks">FINAL QUALITY AUDIT</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Atmospheric Color Grade Moods (Destination themes through subtle aura) -->
+      <div class="aurora-palette-selector">
+        <span class="palette-lbl">Atmospheric Mood:</span>
+        <button class="palette-btn active" data-theme="aurora-emerald" title="Emerald & Gold">
+          <span class="swatch emerald"></span>
+          <span>Emerald Jade</span>
+        </button>
+        <button class="palette-btn" data-theme="aurora-vermilion" title="Torii Vermilion & Amber">
+          <span class="swatch vermilion"></span>
+          <span>Amber Sun</span>
+        </button>
+        <button class="palette-btn" data-theme="aurora-azure" title="Azure & Coral">
+          <span class="swatch azure"></span>
+          <span>Azure Horizon</span>
+        </button>
+        <button class="palette-btn" data-theme="aurora-alpine" title="Alpine Mist & Gold">
+          <span class="swatch alpine"></span>
+          <span>Alpine Gold</span>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="luxury-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="logo-transparent.png" onerror="this.src='Mercury Holidays Logo.png'" alt="Mercury Holidays Logo" class="footer-logo">
+        <p class="footer-tagline">“YOU PACK, WE PLAN”</p>
+        <p class="footer-hq">Headquarters: Noida, Uttar Pradesh, India • Global Curated Journeys</p>
+      </div>
+      <div class="footer-right">
+        <div class="flight-disclaimer">
+          <span class="disclaimer-title">NOTICE TO PASSENGERS</span>
+          <p>Mercury Holidays is in final launch preparations. All itineraries and private travel packages are being calibrated for perfection.</p>
+        </div>
+        <div class="copyright-line">
+          © <span id="current-year">2026</span> Mercury Holidays. All rights reserved. Status: On-Time. Destination: Launching Soon.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Personalized Boarding Pass Modal -->
+  <div id="pass-modal" class="pass-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close-btn" id="modal-x-close" onclick="closePassModal()" aria-label="Close modal">✕</button>
+      
+      <div class="modal-header">
+        <div class="modal-stamp approved-stamp" id="modal-stamp-badge">
+          APPROVED // PRIORITY PASSENGER
+        </div>
+        <h3 class="modal-title">VIP BOARDING CLEARANCE</h3>
+        <p class="modal-subtitle">Your personalized Mercury Holidays boarding credential has been verified.</p>
+        <div class="modal-discount-voucher">
+          <span>✦ 20% EARLY BIRD DISCOUNT VOUCHER ACTIVATED ✦</span>
+        </div>
+      </div>
+
+      <div class="modal-pass-preview" id="modal-pass-content">
+        <div class="modal-pass-top">
+          <img src="logo-transparent.png" onerror="this.src='Mercury Holidays Logo.png'" alt="Mercury Holidays" class="modal-logo">
+          <div class="modal-pass-meta">
+            <span class="modal-flight">MH 2026</span>
+            <span class="modal-class">FIRST CLASS SUITE</span>
+          </div>
+        </div>
+        
+        <div class="modal-pass-route">
+          <div>
+            <span class="m-code">DEL / NOIDA</span>
+            <span class="m-lbl">ORIGIN</span>
+          </div>
+          <div class="m-plane">✈</div>
+          <div>
+            <span class="m-code text-gold">READY</span>
+            <span class="m-lbl">LAUNCHING SOON</span>
+          </div>
+        </div>
+
+        <div class="modal-pass-info-grid">
+          <div>
+            <span class="m-lbl">PASSENGER</span>
+            <strong id="modal-passenger-name">VALUED EXPLORER</strong>
+          </div>
+          <div>
+            <span class="m-lbl">STATUS</span>
+            <strong class="text-green">ON-TIME</strong>
+          </div>
+          <div>
+            <span class="m-lbl">PRIVILEGE</span>
+            <strong class="text-gold">20% OFF</strong>
+          </div>
+          <div>
+            <span class="m-lbl">SEAT</span>
+            <strong>1A</strong>
+          </div>
+        </div>
+
+        <div class="modal-quote-box">
+          <p class="modal-quote-text">
+            “Dear passengers, boarding passes will be available shortly. Pack your bags. Your seamless travel journey is almost ready for boarding.”
+          </p>
+        </div>
+
+        <div class="modal-barcode-strip">
+          <div class="barcode-lines">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span class="modal-barcode-text">MH-PRIORITY-ACCESS-CLEARANCE</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="modal-btn-primary" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print / Save Pass
+        </button>
+        <button type="button" class="modal-btn-secondary" id="modal-bottom-close" onclick="closePassModal()">
+          Close Pass
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
